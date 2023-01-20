@@ -6,6 +6,7 @@ lsp.ensure_installed({
     "clangd",
     "jdtls",
     "tsserver",
+    "sourcekit",
     "sumneko_lua",
     "pyright",
     "rust_analyzer"
