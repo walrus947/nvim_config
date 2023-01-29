@@ -42,23 +42,24 @@ return require('packer').startup(function(use)
         }
     }
      use({
-        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-        config = function()
-        require("lsp_lines").setup()
-        end,
-    })
-    -- init.lua
+         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+         config = function()
+             require("lsp_lines").setup()
+         end,
+     })
+     -- init.lua
      use "lukas-reineke/lsp-format.nvim"
      -- Lua
-use {
-  "folke/trouble.nvim",
-  requires = "nvim-tree/nvim-web-devicons",
-  config = function()
-    require("trouble").setup {
-      -- your configuration comes here
-      -- or leave it empty to use the default settings
-      -- refer to the configuration section below
-    }
-  end
-}
+     use {
+         "folke/trouble.nvim",
+         requires = "nvim-tree/nvim-web-devicons",
+         config = function()
+             require("trouble").setup {
+                 -- your configuration comes here
+                 -- or leave it empty to use the default settings
+                 -- refer to the configuration section below
+             }
+         end
+    } 
+    use("jiangmiao/auto-pairs")
 end)
