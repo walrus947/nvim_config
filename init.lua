@@ -1,4 +1,4 @@
-require("poopbutt")
+require("lua_config")
 
 require'lspconfig'.clangd.setup{}
 require'lspconfig'.jdtls.setup{}
