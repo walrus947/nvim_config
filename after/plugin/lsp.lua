@@ -3,11 +3,10 @@ local lsp = require('lsp-zero')
 lsp.preset('recommended')
 
 lsp.ensure_installed({
+    "bashls",
     "clangd",
     "jdtls",
     "tsserver",
-    "sourcekit",
-    "sumneko_lua",
     "pyright",
     "rust_analyzer"
 })

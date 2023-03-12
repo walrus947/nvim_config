@@ -10,9 +10,11 @@ require("lsp-format").setup {
 --it finds a hit, and then takes its info (reference /Dropbox/School/Semester 6/Systems II
 --for reference with .clang-format
 
+require("lspconfig").bashls.setup {}
 require("lspconfig").clangd.setup { on_attach = require("lsp-format").on_attach }
 require("lspconfig").jdtls.setup { on_attach = require("lsp-format").on_attach }
 require("lspconfig").tsserver.setup { on_attach = require("lsp-format").on_attach }
-require("lspconfig").sumneko_lua.setup { on_attach = require("lsp-format").on_attach }
+require("lspconfig").lua_ls.setup {}
 require("lspconfig").pyright.setup { on_attach = require("lsp-format").on_attach }
+require("lspconfig").sourcekit.setup {}
 require("lspconfig").rust_analyzer.setup { on_attach = require("lsp-format").on_attach }
