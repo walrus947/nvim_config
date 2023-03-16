@@ -9,3 +9,5 @@ require'lspconfig'.sourcekit.setup{}
 require'lspconfig'.lua_ls.setup{}
 require'lspconfig'.pyright.setup{}
 require'lspconfig'.rust_analyzer.setup{}
+
+vim.g.netrw_bufsettings = "noma nomod nonu nobl nowrap ro rnu"
