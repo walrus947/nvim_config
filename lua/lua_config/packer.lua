@@ -63,4 +63,5 @@ return require('packer').startup(function(use)
          end
     } 
     use("jiangmiao/auto-pairs")
+    use('norcalli/nvim-colorizer.lua')
 end)
