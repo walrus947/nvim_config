@@ -42,12 +42,6 @@ return require('packer').startup(function(use)
             {'rafamadriz/friendly-snippets'},
         }
     }
-     use({
-         "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
-         config = function()
-             require("lsp_lines").setup()
-         end,
-     })
      -- init.lua
      use "lukas-reineke/lsp-format.nvim"
      -- Lua
@@ -61,7 +55,17 @@ return require('packer').startup(function(use)
                  -- refer to the configuration section below
              }
          end
-    } 
+    }
+    
     use("jiangmiao/auto-pairs")
     use('norcalli/nvim-colorizer.lua')
+    use({
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+        require("lsp_lines").setup()
+        end,
+    })
+    use('neovim/nvim-lspconfig')
+    use('jose-elias-alvarez/null-ls.nvim')
+    use('MunifTanjim/prettier.nvim')
 end)
