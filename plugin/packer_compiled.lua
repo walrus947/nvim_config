@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/ethan/.local/share/nvim/site/pack/packer/start/auto-pairs",
     url = "https://github.com/jiangmiao/auto-pairs"
   },
+  ["awesome-vim-colorschemes"] = {
+    loaded = true,
+    path = "/Users/ethan/.local/share/nvim/site/pack/packer/start/awesome-vim-colorschemes",
+    url = "https://github.com/rafi/awesome-vim-colorschemes"
+  },
   ["cmp-buffer"] = {
     loaded = true,
     path = "/Users/ethan/.local/share/nvim/site/pack/packer/start/cmp-buffer",
