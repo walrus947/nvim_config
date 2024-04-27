@@ -12,4 +12,4 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup('glork.plugins')
+require('lazy').setup('glork.lazy')
