@@ -27,12 +27,14 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "rust_analyzer",
-		"bashls",
-		"clangd", 
-		"lua_ls",
-		"texlab",
-		"pyright",
-
+                "bashls",
+                "clangd",
+                "jdtls",
+                "texlab",
+                "lua_ls",
+                "pyright",
+                "terraformls",
+                "gopls"
             },
 
             handlers = {
