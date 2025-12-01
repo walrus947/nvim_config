@@ -21,7 +21,19 @@ vim.api.nvim_create_autocmd("FileType", {
   end,
 })
 
---floating error messages
+-- Dynamically set `path` to git root rather than working dir for search
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = "*",
+  callback = function()
+      local git_root = vim.fn.systemlist('git rev-parse --show-toplevel')[1]
+      if vim.v.shell_error == 0 then
+          vim.cmd('lcd ' .. git_root)
+          vim.o.path = '.,,**'
+      end
+  end,
+})
+
+-- floating error messages
 vim.o.updatetime = 250
 vim.api.nvim_create_autocmd( { "CursorHold", "CursorHoldI" }, {
     callback = function()
@@ -33,37 +45,37 @@ vim.diagnostic.config({
     virtual_text = false
 })
 
---floating diagnostic message for current line
+-- floating diagnostic message for current line
 vim.keymap.set('n', '<leader>em', ":lua vim.diagnostic.open_float(0, {scope='line'})<CR>")
 
---type info
+-- type info
 vim.keymap.set('n', '<leader>ty', vim.lsp.buf.hover, {desc = "Show hover/type info"})
 
---in visual mode, allows blocks to be moved up and down
+-- in visual mode, allows blocks to be moved up and down
 vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv") 
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv")
 
---when appending, cursor will stay left bound
+-- when appending, cursor will stay left bound
 vim.keymap.set('n', 'J', "mzJ`z")
 
---when half page jumping, cursor stays in middle of screen
+-- when half page jumping, cursor stays in middle of screen
 vim.keymap.set('n', '<C-d>', "<C-d>zz")
 vim.keymap.set('n', '<C-u>', "<C-u>zz")
 
---when searching, cursor will stay in middle of screen
+-- when searching, cursor will stay in middle of screen
 vim.keymap.set('n', 'n', "nzzzv")
 vim.keymap.set('n', 'N', "Nzzzv")
 
---copies to system clipboard rather than vim buffer
+-- copies to system clipboard rather than vim buffer
 vim.keymap.set('n', '<leader>y', "\"+y")
 vim.keymap.set('v', '<leader>y', "\"+y")
 vim.keymap.set('n', '<leader>Y', "\"+Y")
 
---deletes highlighted text and pastes over it without caching to save buffer
---'x' is visual mode
+-- deletes highlighted text and pastes over it without caching to save buffer
+-- 'x' is visual mode
 vim.keymap.set('x', '<leader>p', [["dP"]])
 
---for go
+-- for go
 vim.keymap.set(
     'n',
     '<leader>ee',
@@ -76,20 +88,37 @@ vim.keymap.set(
     'oif err != nil {<CR>}<Esc>Olog.Fatalf(\"error: %s\\n\", err.Error())<Esc>jj'
 )
 
---this command should die
+-- this command should die
 vim.keymap.set('n', 'Q', "<nop>")
 
---make sure tmux works to reenable this
---vim.keymap.set('n', '<C-f>', "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+-- make sure tmux works to reenable this
+-- vim.keymap.set('n', '<C-f>', "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
---quickfix navigation
+-- quickfix navigation
 vim.keymap.set("n", "<C-k>", "<cmd>cnext<CR>zz")
 vim.keymap.set("n", "<C-j>", "<cmd>cprev<CR>zz")
 vim.keymap.set("n", "<leader>k", "<cmd>lnext<CR>zz")
 vim.keymap.set("n", "<leader>j", "<cmd>lprev<CR>zz")
 
---rename string that cursor is on
+-- rename string that cursor is on
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]])
 
---chmod that file
+-- chmod that file
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
+
+-- git blame keybinds
+vim.keymap.set('n', '<leader>gb', function()
+    vim.cmd('GitBlameToggle')
+end)
+
+vim.keymap.set('n', '<leader>ob', function()
+    vim.cmd('GitBlameOpenURL')
+end)
+
+-- lsp rename
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename)
+
+-- devdocs
+vim.keymap.set('n', '<C-K>', function()
+    vim.cmd('DevdocsOpen')
+end)

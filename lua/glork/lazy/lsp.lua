@@ -41,7 +41,10 @@ return {
                 function(server_name) -- default handler (optional)
 
                     require("lspconfig")[server_name].setup {
-                        capabilities = capabilities
+                        capabilities = capabilities,
+                        on_attach = function()
+                            require("lsp_signature").on_attach()
+                        end
                     }
                 end,
 
